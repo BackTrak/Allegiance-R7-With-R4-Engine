@@ -174,6 +174,7 @@ void CVRAMManager::EvictDefaultPoolResources( )
 				}
 			}
 		}
+		CD3DDevice9::Get()->Device()->EvictManagedResources(); //imago 9/14
 	}
 }
 
@@ -306,7 +307,8 @@ HRESULT CVRAMManager::CreateTexture(	TEXHANDLE	texHandle,
 			uiNumLevels = NUM_MIPMAP_LEVELS;
 			dwUsageFlags |= D3DUSAGE_AUTOGENMIPMAP;
 		}
-
+		//UINT mem = CD3DDevice9::Get()->Device()->GetAvailableTextureMem();
+		//debugf("Creating texture %s - memory before: %u\n",szTextureName,mem);
 		// imago 6/26/09
 		hr = CD3DDevice9::Get()->Device()->CreateTexture(	pTexture->dwOriginalWidth,
 															pTexture->dwOriginalHeight,
@@ -317,22 +319,22 @@ HRESULT CVRAMManager::CreateTexture(	TEXHANDLE	texHandle,
 															&pTexture->pTexture,
 															NULL );  //Fix memory leak -Imago 8/2/09
 
-		D3DSURFACE_DESC surfDesc;
-		pTexture->pTexture->GetLevelDesc( 0, &surfDesc );
-		pTexture->dwActualWidth		= GetPower2( surfDesc.Width );
-		pTexture->dwActualHeight	= GetPower2( surfDesc.Height );
-
-		// If it created ok, update the texture details.
+		// If it created ok, update the texture details.  Imago fixed on 9/14
 		if( hr == D3D_OK )
 		{
+			D3DSURFACE_DESC surfDesc;
+			pTexture->pTexture->GetLevelDesc( 0, &surfDesc );
+			pTexture->dwActualWidth		= GetPower2( surfDesc.Width );
+			pTexture->dwActualHeight	= GetPower2( surfDesc.Height );
 			pTexture->texFormat		= texFormat;
 			pTexture->bValid		= true;
-		}
-
-		if( m_sVRAM.bMipMapGenerationEnabled == true )
-		{
-			pTexture->pTexture->SetAutoGenFilterType( CD3DDevice9::Get()->GetMipFilter() );
-			pTexture->bMipMappedTexture = true;
+			if( m_sVRAM.bMipMapGenerationEnabled == true )
+			{
+				pTexture->pTexture->SetAutoGenFilterType( CD3DDevice9::Get()->GetMipFilter() );
+				pTexture->bMipMappedTexture = true;
+			}
+		} else {
+			debugf("Failed to create texture!\n"); //OUTOFMEMORY imago 9/14
 		}
 	}
 
@@ -506,7 +508,15 @@ bool CVRAMManager::ReleaseHandle( TEXHANDLE texHandle )
 			ULONG refCount;
 
 			// Release the texture. Clear out the data when the reference count is zero.
-			refCount = m_sVRAM.ppBankArray[ dwBankIndex ]->pTexArray[ dwTexIndex ].pTexture->Release(); //Imago 6/10 TODO REVIEW DEBUG CRASH HERE
+			//refCount = m_sVRAM.ppBankArray[ dwBankIndex ]->pTexArray[ dwTexIndex ].pTexture->Release(); 			//Imago 6/10 TODO REVIEW DEBUG CRASH HERE
+			//Imago fleshed this out 9/14
+			SBank* myBank = m_sVRAM.ppBankArray[ dwBankIndex ];
+			if (myBank) {
+				LPDIRECT3DTEXTURE9 myTexture = myBank->pTexArray[ dwTexIndex ].pTexture;
+				if (myTexture && !IsBadReadPtr(myTexture, sizeof(myTexture))) {
+					refCount = myTexture->Release();
+				}
+			}
 			if( refCount == 0 )
 			{
 				// Reduce the counts.
@@ -797,14 +807,41 @@ HRESULT CVRAMManager::PushRenderTarget( TEXHANDLE texHandle, DWORD dwTargetIndex
 		}
 		m_sVRAM.dwNumTargetsPushed ++;
 
-		LPDIRECT3DSURFACE9 lpRTSurface;
-		hr = pTexture->pTexture->GetSurfaceLevel( 0, &lpRTSurface );
-		_ASSERT( hr == D3D_OK );
-		hr = pDev->Device()->SetRenderTarget( dwTargetIndex, lpRTSurface );
-		_ASSERT( hr == D3D_OK );
+		//  BT - 7/15 - Added try/catch
+		LPDIRECT3DSURFACE9 lpRTSurface = 0;
 
-		// We've finished with the surface.
-		refCount = lpRTSurface->Release();
+		try
+		{
+			hr = pTexture->pTexture->GetSurfaceLevel(0, &lpRTSurface);
+			_ASSERT(hr == D3D_OK);
+			hr = pDev->Device()->SetRenderTarget(dwTargetIndex, lpRTSurface);
+			_ASSERT(hr == D3D_OK);
+
+			// We've finished with the surface.
+			refCount = lpRTSurface->Release();
+		}
+		catch (...)
+		{
+			// BT - 7/15 - There was a memory access error when getting GetSurfaceLevel(0), so disable the device's color buffer.
+			// It appears to happen when the chat window is being drawn while in full screen mode.
+			hr = pDev->Device()->SetRenderTarget(dwTargetIndex, NULL);
+
+			if (lpRTSurface > 0)
+				refCount = lpRTSurface->Release();
+		}
+
+		
+
+		//LPDIRECT3DSURFACE9 lpRTSurface;
+		//hr = pTexture->pTexture->GetSurfaceLevel(0, &lpRTSurface);
+		//_ASSERT(hr == D3D_OK);
+		//hr = pDev->Device()->SetRenderTarget(dwTargetIndex, lpRTSurface);
+		//_ASSERT(hr == D3D_OK);
+
+		//// We've finished with the surface.
+		//refCount = lpRTSurface->Release();
+
+
 
 		m_sVRAM.hCurrentTargetTexture = texHandle;
 

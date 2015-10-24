@@ -136,18 +136,18 @@ bool PromptUserForVideoSettings(bool bStartFullscreen, bool bRaise, int iAdapter
 		HMONITOR hMon = MonitorFromPoint(Point(0,0), MONITOR_DEFAULTTOPRIMARY);
 		HKEY hKey;
 		//load preferences when not using dialog
-		if (ERROR_SUCCESS == ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, lpSubKey, 0, KEY_READ, &hKey))
+		if (ERROR_SUCCESS == ::RegOpenKeyExA(HKEY_LOCAL_MACHINE, lpSubKey, 0, KEY_READ, &hKey))
         {
             DWORD dwSize = 4;
             DWORD dwType = REG_DWORD;
 
-            ::RegQueryValueEx(hKey, "CombatFullscreenXSize", NULL, &dwType, (BYTE*)&x, &dwSize);
-			::RegQueryValueEx(hKey, "CombatFullscreenYSize", NULL, &dwType, (BYTE*)&y, &dwSize);
-			::RegQueryValueEx(hKey, "UseAntialiasing", NULL, &dwType, (BYTE*)&g_DX9Settings.m_dwAA, &dwSize);
-			::RegQueryValueEx(hKey, "UseAutoMipMaps", NULL, &dwType, (BYTE*)&g_VideoSettings.bAutoGenMipmaps, &dwSize);
-			::RegQueryValueEx(hKey, "UseTexturePack", NULL, &dwType, (BYTE*)&g_VideoSettings.bUseTexturePackFile, &dwSize);
-			::RegQueryValueEx(hKey, "UseVSync", NULL, &dwType, (BYTE*)&g_VideoSettings.bWaitForVSync, &dwSize);
-			::RegQueryValueEx(hKey, "MaxTextureSize", NULL, &dwType, (BYTE*)&g_VideoSettings.iMaxTextureSize, &dwSize);
+            ::RegQueryValueExA(hKey, "CombatFullscreenXSize", NULL, &dwType, (BYTE*)&x, &dwSize);
+			::RegQueryValueExA(hKey, "CombatFullscreenYSize", NULL, &dwType, (BYTE*)&y, &dwSize);
+			::RegQueryValueExA(hKey, "UseAntialiasing", NULL, &dwType, (BYTE*)&g_DX9Settings.m_dwAA, &dwSize);
+			::RegQueryValueExA(hKey, "UseAutoMipMaps", NULL, &dwType, (BYTE*)&g_VideoSettings.bAutoGenMipmaps, &dwSize);
+			::RegQueryValueExA(hKey, "UseTexturePack", NULL, &dwType, (BYTE*)&g_VideoSettings.bUseTexturePackFile, &dwSize);
+			::RegQueryValueExA(hKey, "UseVSync", NULL, &dwType, (BYTE*)&g_VideoSettings.bWaitForVSync, &dwSize);
+			::RegQueryValueExA(hKey, "MaxTextureSize", NULL, &dwType, (BYTE*)&g_VideoSettings.iMaxTextureSize, &dwSize);
 			//::RegQueryValueEx(hKey, "UseAnisotropic", NULL, &dwType, (BYTE*)&idummy, &dwSize); NYI
 			//::RegQueryValueEx(hKey, "AAQuality", NULL, &dwType, (BYTE*)&idummy, &dwSize); NYI
             ::RegCloseKey(hKey);
@@ -161,7 +161,7 @@ bool PromptUserForVideoSettings(bool bStartFullscreen, bool bRaise, int iAdapter
 		if( g_VideoSettings.pDevData->GetTotalResolutionCount( 0 ) == 0 )
 		{
 			logFile.OutputString( "Primary device has no modes that support Allegiance.\n" );
-			MessageBox( NULL, "Primary device has no modes that support Allegiance.",
+			MessageBoxA( NULL, "Primary device has no modes that support Allegiance.",
 							"Error", MB_OK );
 			return false;
 		}
@@ -273,7 +273,7 @@ bool PromptUserForVideoSettings(bool bStartFullscreen, bool bRaise, int iAdapter
 		if( g_VideoSettings.pDevData->GetTotalResolutionCount( 0 ) == 0 )
 		{
 			logFile.OutputString( "Primary device has no modes that support Allegiance.\n" );
-			MessageBox( NULL, "Primary device has no modes that support Allegiance.",
+			MessageBoxA( NULL, "Primary device has no modes that support Allegiance.",
 							"Error", MB_OK );
 			return false;
 		}
@@ -455,9 +455,9 @@ void SetModeData( HWND hDlg, int iCurrentDevice )
 	for( i=0; i<iCount; i++ )
 	{
 		g_VideoSettings.pDevData->GetResolutionStringByIndex( iCurrentDevice, i, szBuffer, 256 );
-		SendMessage( hControl, CB_ADDSTRING, 0, reinterpret_cast<LPARAM>((LPCTSTR) szBuffer ) );
+		SendMessageA( hControl, CB_ADDSTRING, 0, reinterpret_cast<LPARAM>((LPCSTR) szBuffer ) );
 	}
-	SendMessage( hControl, CB_SETCURSEL, g_VideoSettings.iCurrentMode, 0 );
+	SendMessageA( hControl, CB_SETCURSEL, g_VideoSettings.iCurrentMode, 0 );
 }
 
 
@@ -487,7 +487,7 @@ void SetAAData( HWND hDlg, int iCurrentDevice, int iCurrentMode, bool bWindowed 
 	{
 		g_VideoSettings.pDevData->GetAASettingString( 
 			iCurrentDevice, iCurrentMode, bWindowed, i, szBuffer, 256 );
-		SendMessage( hControl, CB_ADDSTRING, 0, reinterpret_cast<LPARAM>((LPCTSTR) szBuffer ) );
+		SendMessageA( hControl, CB_ADDSTRING, 0, reinterpret_cast<LPARAM>((LPCSTR) szBuffer ) );
 	}
 
 	// Clamp the selection value.
@@ -514,13 +514,13 @@ void SetGFXSettings( HWND hwndDlg, int iMaxTextureSize, bool bAutoGenMipmaps )
 
 	for( i=0; i<CD3DDevice9::eMTS_NumTextureSizes; i++ )
 	{
-		SendMessage( hControl, CB_ADDSTRING, 0, 
-			reinterpret_cast<LPARAM>((LPCTSTR) g_VideoSettings.pDevData->GetMaxTextureString( i ) ) );
+		SendMessageA( hControl, CB_ADDSTRING, 0, 
+			reinterpret_cast<LPARAM>((LPCSTR) g_VideoSettings.pDevData->GetMaxTextureString( i ) ) );
 	}
-	SendMessage( hControl, CB_SETCURSEL, iMaxTextureSize, 0 );
+	SendMessageA( hControl, CB_SETCURSEL, iMaxTextureSize, 0 );
 
 	hControl = GetDlgItem( hwndDlg, IDC_AUTOGENMIPMAPS );
-	SendMessage( hControl, BM_SETCHECK, (bAutoGenMipmaps == true ) ? BST_CHECKED : BST_UNCHECKED, 0 );
+	SendMessageA( hControl, BM_SETCHECK, (bAutoGenMipmaps == true ) ? BST_CHECKED : BST_UNCHECKED, 0 );
 }
 
 
@@ -626,7 +626,7 @@ INT_PTR CALLBACK ResPickerDialogProc( HWND hwndDlg, UINT uMsg, WPARAM wParam, LP
 			for( i=0; i<g_VideoSettings.pDevData->GetDeviceCount(); i++ )
 			{
 				g_VideoSettings.pDevData->GetDeviceNameByIndex( i, szBuffer, 256 );
-				SendMessage( hControl, CB_ADDSTRING, 0, reinterpret_cast<LPARAM>((LPCTSTR) szBuffer ) );
+				SendMessageA( hControl, CB_ADDSTRING, 0, reinterpret_cast<LPARAM>((LPCSTR) szBuffer ) );
 			}
 			
 			// Make the first option, the selected one. Once reg key stuff set up, make the last used device the selected one.
@@ -680,7 +680,7 @@ INT_PTR CALLBACK ResPickerDialogProc( HWND hwndDlg, UINT uMsg, WPARAM wParam, LP
 	                EndDialog(hwndDlg, wParam); 
 					return TRUE;
 				}
-				MessageBox( hwndDlg, "Selected mode could not be validated.", "Invalid mode selection", MB_OK );
+				MessageBoxA( hwndDlg, "Selected mode could not be validated.", "Invalid mode selection", MB_OK );
 				return FALSE;			// Do nothing.
 
             case IDCANCEL: 
@@ -760,7 +760,7 @@ int Read3DRegistrySettings( SAdditional3DRegistryData * pRegData, LPCSTR lpSubKe
 	HKEY hKey;
 	int iRetVal = 0;
 	DWORD dwDataSize, dwBoolValue;
-	if( ERROR_SUCCESS == ::RegOpenKeyEx(	HKEY_LOCAL_MACHINE,
+	if( ERROR_SUCCESS == ::RegOpenKeyExA(	HKEY_LOCAL_MACHINE,
 											lpSubKey,
 											0,
 											KEY_READ,
@@ -770,65 +770,65 @@ int Read3DRegistrySettings( SAdditional3DRegistryData * pRegData, LPCSTR lpSubKe
 
 		// Load the values.
 		dwDataSize = 4;
-		::RegQueryValueEx( hKey, "DeviceIndex", 0, 0, 
+		::RegQueryValueExA( hKey, "DeviceIndex", 0, 0, 
 			(LPBYTE) &g_VideoSettings.iCurrentDevice, &dwDataSize );
 		dwDataSize = 256;
-		::RegQueryValueEx( hKey, "DeviceName", 0, 0,
+		::RegQueryValueExA( hKey, "DeviceName", 0, 0,
 			(LPBYTE) pRegData->szDeviceName, &dwDataSize );
 
 		pLogFile->OutputStringV( "Device index %d:  %s\n", g_VideoSettings.iCurrentDevice, pRegData->szDeviceName );
 
 		dwDataSize = 4;
-		::RegQueryValueEx( hKey, "ModeIndex", 0, 0, 
+		::RegQueryValueExA( hKey, "ModeIndex", 0, 0, 
 			(LPBYTE) &g_VideoSettings.iCurrentMode, &dwDataSize );
 		dwDataSize = 256;
-		::RegQueryValueEx( hKey, "ModeName", 0, 0,
+		::RegQueryValueExA( hKey, "ModeName", 0, 0,
 			(LPBYTE) pRegData->szResolutionName, &dwDataSize );
 		
 		pLogFile->OutputStringV( "Mode index %d:  %s\n", g_VideoSettings.iCurrentMode, pRegData->szResolutionName );
 
 		dwDataSize = 4;
-		::RegQueryValueEx( hKey, "Windowed", 0, 0, 
+		::RegQueryValueExA( hKey, "Windowed", 0, 0, 
 			(LPBYTE) &dwBoolValue, &dwDataSize );
 		g_VideoSettings.bWindowed = ( dwBoolValue == 0 ) ? false : true;
 		dwDataSize = 4;
-		::RegQueryValueEx( hKey, "WaitForVSync", 0, 0, 
+		::RegQueryValueExA(hKey, "WaitForVSync", 0, 0,
 			(LPBYTE) &dwBoolValue, &dwDataSize );
 		g_VideoSettings.bWaitForVSync = ( dwBoolValue == 0 ) ? false : true;
 
 		pLogFile->OutputStringV( "WIN: %d   VSYNC: %d\n", g_VideoSettings.bWindowed, g_VideoSettings.bWaitForVSync );
 
 		dwDataSize = 256;
-		::RegQueryValueEx( hKey, "AAName", 0, 0,
+		::RegQueryValueExA(hKey, "AAName", 0, 0,
 			(LPBYTE) pRegData->szAASettingName, &dwDataSize );
 		dwDataSize = 4;
-		::RegQueryValueEx( hKey, "AAIndex", 0, 0, 
+		::RegQueryValueExA(hKey, "AAIndex", 0, 0,
 			(LPBYTE) &g_VideoSettings.iCurrentAASetting, &dwDataSize );
 
 		pLogFile->OutputStringV( "AA %d:  %s\n", g_VideoSettings.iCurrentAASetting, pRegData->szAASettingName );
 
 		dwDataSize = 4;
-		::RegQueryValueEx( hKey, "MagFilter", 0, 0, 
+		::RegQueryValueExA(hKey, "MagFilter", 0, 0,
 			(LPBYTE) &g_VideoSettings.magFilter, &dwDataSize );
 		dwDataSize = 4;
-		::RegQueryValueEx( hKey, "MinFilter", 0, 0, 
+		::RegQueryValueExA(hKey, "MinFilter", 0, 0,
 			(LPBYTE) &g_VideoSettings.minFilter, &dwDataSize );
 		dwDataSize = 4;
-		::RegQueryValueEx( hKey, "MipFilter", 0, 0, 
+		::RegQueryValueExA(hKey, "MipFilter", 0, 0,
 			(LPBYTE) &g_VideoSettings.mipFilter, &dwDataSize );
 
 		pLogFile->OutputStringV( "MAG: %d   MIN: %d   MIP: %d\n", 
 			g_VideoSettings.magFilter, g_VideoSettings.minFilter, g_VideoSettings.mipFilter );
 
 		dwDataSize = 4;
-		::RegQueryValueEx( hKey, "MaxTextureSize", 0, 0, 
+		::RegQueryValueExA(hKey, "MaxTextureSize", 0, 0,
 			(LPBYTE) &g_VideoSettings.iMaxTextureSize, &dwDataSize );
 		dwDataSize = 4;
-		::RegQueryValueEx( hKey, "AutoGenMipmaps", 0, 0, 
+		::RegQueryValueExA(hKey, "AutoGenMipmaps", 0, 0,
 			(LPBYTE) &dwBoolValue, &dwDataSize );
 		g_VideoSettings.bAutoGenMipmaps = ( dwBoolValue == 0 ) ? false : true;
 		dwDataSize = 4;
-		::RegQueryValueEx( hKey, "UseTexturePackFile", 0, 0, 
+		::RegQueryValueExA( hKey, "UseTexturePackFile", 0, 0, 
 			(LPBYTE) &dwBoolValue, &dwDataSize );
 		g_VideoSettings.bUseTexturePackFile = ( dwBoolValue == 0 ) ? false : true;
 
@@ -851,7 +851,7 @@ int Write3DRegistrySettings( LPCSTR lpSubKey )
 	HKEY hKey;
 	int iRetVal = 0;
 	DWORD dwDisposition;
-	if( ERROR_SUCCESS == ::RegCreateKeyEx(	HKEY_LOCAL_MACHINE, 
+	if( ERROR_SUCCESS == ::RegCreateKeyExA(	HKEY_LOCAL_MACHINE, 
 											lpSubKey,
 											0, 
 											"",
@@ -869,20 +869,20 @@ int Write3DRegistrySettings( LPCSTR lpSubKey )
 				dwUseTexturePack = g_VideoSettings.bUseTexturePackFile ? 1 : 0;
 	
 		g_VideoSettings.pDevData->GetDeviceNameByIndex( (int) dwDeviceIndex, szBuffer, 256 );
-		::RegSetValueEx(	hKey, "DeviceIndex", 0, REG_DWORD,
+		::RegSetValueExA(	hKey, "DeviceIndex", 0, REG_DWORD,
 							(const BYTE*) &dwDeviceIndex, sizeof( DWORD ) );
-		::RegSetValueEx(	hKey, "DeviceName", 0, REG_SZ,
+		::RegSetValueExA(hKey, "DeviceName", 0, REG_SZ,
 							(const BYTE*) szBuffer, strlen( szBuffer ) + 1 );
-		::RegSetValueEx(	hKey, "ModeIndex", 0, REG_DWORD,
+		::RegSetValueExA(hKey, "ModeIndex", 0, REG_DWORD,
 							(const BYTE*) &g_VideoSettings.iCurrentMode, sizeof( DWORD ) );
 		g_VideoSettings.pDevData->GetResolutionStringByIndex( (int) dwDeviceIndex, 
 																g_VideoSettings.iCurrentMode,
 																szBuffer, 256 );
-		::RegSetValueEx(	hKey, "ModeName", 0, REG_SZ,
+		::RegSetValueExA(hKey, "ModeName", 0, REG_SZ,
 							(const BYTE*) szBuffer, strlen( szBuffer ) + 1 );
-		::RegSetValueEx(	hKey, "Windowed", 0, REG_DWORD,
+		::RegSetValueExA(hKey, "Windowed", 0, REG_DWORD,
 							(const BYTE*) &dwWindowed, sizeof( DWORD ) );
-		::RegSetValueEx(	hKey, "WaitForVSync", 0, REG_DWORD,
+		::RegSetValueExA(hKey, "WaitForVSync", 0, REG_DWORD,
 							(const BYTE*) &dwVSync, sizeof( DWORD ) );
 
 		g_VideoSettings.pDevData->GetAASettingString(	(int) dwDeviceIndex, 
@@ -891,22 +891,22 @@ int Write3DRegistrySettings( LPCSTR lpSubKey )
 														g_VideoSettings.iCurrentAASetting,
 														szBuffer, 
 														256 );
-		::RegSetValueEx(	hKey, "AAName", 0, REG_SZ,
+		::RegSetValueExA(hKey, "AAName", 0, REG_SZ,
 							(const BYTE*) szBuffer, strlen( szBuffer ) + 1 );
-		::RegSetValueEx(	hKey, "AAIndex", 0, REG_DWORD,
+		::RegSetValueExA(hKey, "AAIndex", 0, REG_DWORD,
 							(const BYTE*) &g_VideoSettings.iCurrentAASetting, sizeof( DWORD ) );
-		::RegSetValueEx(	hKey, "MagFilter", 0, REG_DWORD,
+		::RegSetValueExA(hKey, "MagFilter", 0, REG_DWORD,
 							(const BYTE*) &g_VideoSettings.magFilter, sizeof( DWORD ) );
-		::RegSetValueEx(	hKey, "MinFilter", 0, REG_DWORD,
+		::RegSetValueExA(hKey, "MinFilter", 0, REG_DWORD,
 							(const BYTE*) &g_VideoSettings.minFilter, sizeof( DWORD ) );
-		::RegSetValueEx(	hKey, "MipFilter", 0, REG_DWORD,
+		::RegSetValueExA(hKey, "MipFilter", 0, REG_DWORD,
 							(const BYTE*) &g_VideoSettings.mipFilter, sizeof( DWORD ) );
 
-		::RegSetValueEx(	hKey, "MaxTextureSize", 0, REG_DWORD, 
+		::RegSetValueExA(hKey, "MaxTextureSize", 0, REG_DWORD,
 							(const BYTE*)  &g_VideoSettings.iMaxTextureSize, sizeof( DWORD ) );
-		::RegSetValueEx(	hKey, "AutoGenMipmaps", 0, REG_DWORD, 
+		::RegSetValueExA(hKey, "AutoGenMipmaps", 0, REG_DWORD,
 							(const BYTE*) &dwAutoGenMipmaps, sizeof( DWORD ) );
-		::RegSetValueEx(	hKey, "UseTexturePackFile", 0, REG_DWORD, 
+		::RegSetValueExA(hKey, "UseTexturePackFile", 0, REG_DWORD,
 							(const BYTE*) &dwUseTexturePack, sizeof( DWORD ) );
 
 		RegCloseKey(hKey);
@@ -1034,30 +1034,30 @@ INT_PTR CALLBACK ProgressBarDialogProc( HWND hwndDlg, UINT uMsg, WPARAM wParam, 
 				// used to set the maximum refresh rate and avoid any PnP issues (thanks Sgt_Baker)
 int GetMaxRate(int index = 0)
 {
-    DISPLAY_DEVICE dd;
-    dd.cb = sizeof(DISPLAY_DEVICE);
+    DISPLAY_DEVICEA dd;
+    dd.cb = sizeof(DISPLAY_DEVICEA);
 
-	if (!EnumDisplayDevices(NULL, index, &dd, 0))
+	if (!EnumDisplayDevicesA(NULL, index, &dd, 0))
     {
 		debugf("1: EnumDisplayDevices failed:%d\n", GetLastError());
         return 60;
     }
  
-    DISPLAY_DEVICE monitor;
-    monitor.cb = sizeof(DISPLAY_DEVICE);
-    if (!EnumDisplayDevices(dd.DeviceName, 0, &monitor, 0))
+    DISPLAY_DEVICEA monitor;
+    monitor.cb = sizeof(DISPLAY_DEVICEA);
+    if (!EnumDisplayDevicesA(dd.DeviceName, 0, &monitor, 0))
     {
 		debugf("2: EnumDisplayDevices failed:%d\n", GetLastError());
-		if (!EnumDisplayDevices(NULL, 0, &monitor, 0))	{
+		if (!EnumDisplayDevicesA(NULL, 0, &monitor, 0))	{
 			debugf("22: EnumDisplayDevices failed:%d\n", GetLastError());
 			return 60;
 		}
 	}
  
-    DEVMODE dm;
-    dm.dmSize = sizeof(DEVMODE);
+    DEVMODEA dm;
+    dm.dmSize = sizeof(DEVMODEA);
  
-    if (!EnumDisplaySettings(dd.DeviceName, ENUM_CURRENT_SETTINGS, &dm))
+    if (!EnumDisplaySettingsA(dd.DeviceName, ENUM_CURRENT_SETTINGS, &dm))
     {
 		debugf("3: EnumDisplaySettings failed:%d\n", GetLastError());
         return 60;

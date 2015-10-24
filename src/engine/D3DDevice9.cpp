@@ -112,11 +112,11 @@ HRESULT CD3DDevice9::CreateD3D9( CLogFile * pLogFile )
 {
 	// Create the D3D9 interface.
 	m_sD3DDev9.pD3D9 = Direct3DCreate9( D3D_SDK_VERSION ); //Fix memory leak -Imago 8/2/09
-	HMODULE hRast = LoadLibrary("rgb9rast.dll");
+	HMODULE hRast = LoadLibraryA("rgb9rast.dll");
 	if (hRast == 0) {
-		hRast = LoadLibrary("rgb9rast_1.dll");
+		hRast = LoadLibraryA("rgb9rast_1.dll");
 		if (hRast == 0) {
-			hRast = LoadLibrary("rgb9rast_2.dll");
+			hRast = LoadLibraryA("rgb9rast_2.dll");
 		}
 	}
 	if(hRast != 0) {
@@ -477,10 +477,14 @@ void CD3DDevice9::CreateAADepthStencilBuffer()
 HRESULT	CD3DDevice9::ResetDevice(	bool	bWindowed, 
 									DWORD	dwWidth /*=0*/, 
 									DWORD	dwHeight /*=0*/, 
-									int 	iRate) // =60 imago added iRate 7/1/09
+									int 	iRate, /* =60 imago added iRate 7/1/09 */
+									bool	forceReset // BT - 11/4/2012 - Fixing multi-monitor hang on app startup */
+									) 
 {
 	HRESULT hr				= D3D_OK;
-	bool bResetRequired		= false;
+
+	// BT - 11/4/2012 - Fixing multi-monitor hang on app startup
+	bool bResetRequired		= forceReset;
 
 	if( bWindowed == true )
 	{
@@ -550,7 +554,7 @@ HRESULT	CD3DDevice9::ResetDevice(	bool	bWindowed,
 				m_sD3DDev9.d3dPresParams.BackBufferWidth, 
 				m_sD3DDev9.d3dPresParams.BackBufferHeight,
 				m_sD3DDev9.d3dPresParams.FullScreen_RefreshRateInHz);
-		OutputDebugString( szBuffer );
+		OutputDebugStringA( szBuffer );
 	}
 
 	if( bResetRequired == true || //mode changes

@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="AZRetail|Win32">
+      <Configuration>AZRetail</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="FZDebug|Win32">
+      <Configuration>FZDebug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="FZRetail|Win32">
+      <Configuration>FZRetail</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Retail|Win32">
+      <Configuration>Retail</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\engine\bounds.cpp" />
+    <ClCompile Include="..\src\engine\bspgeo.cpp" />
+    <ClCompile Include="..\src\engine\button.cpp" />
+    <ClCompile Include="..\src\engine\camera.cpp" />
+    <ClCompile Include="..\src\engine\caption.cpp" />
+    <ClCompile Include="..\src\engine\CD3DDevice9.cpp" />
+    <ClCompile Include="..\src\engine\context.cpp" />
+    <ClCompile Include="..\src\engine\controls.cpp" />
+    <ClCompile Include="..\src\engine\CVBIBManager.cpp" />
+    <ClCompile Include="..\src\engine\CVRAMManager.cpp" />
+    <ClCompile Include="..\src\engine\d3ddevice.cpp" />
+    <ClCompile Include="..\src\engine\dddevice.cpp" />
+    <ClCompile Include="..\src\engine\dderror.cpp" />
+    <ClCompile Include="..\src\engine\ddsurface.cpp" />
+    <ClCompile Include="..\src\engine\device3d.cpp" />
+    <ClCompile Include="..\src\engine\dinput.cpp" />
+    <ClCompile Include="..\src\engine\DX9PackFile.cpp" />
+    <ClCompile Include="..\src\engine\engine.cpp" />
+    <ClCompile Include="..\src\engine\engineapp.cpp" />
+    <ClCompile Include="..\src\engine\enginewindow.cpp" />
+    <ClCompile Include="..\src\engine\fliphelp.cpp" />
+    <ClCompile Include="..\src\engine\font.cpp" />
+    <ClCompile Include="..\src\engine\frameimage.cpp" />
+    <ClCompile Include="..\src\engine\geometry.cpp" />
+    <ClCompile Include="..\src\engine\HashTable.cpp" />
+    <ClCompile Include="..\src\engine\image.cpp" />
+    <ClCompile Include="..\src\engine\keyframe.cpp" />
+    <ClCompile Include="..\src\engine\material.cpp" />
+    <ClCompile Include="..\src\engine\mdl.cpp" />
+    <ClCompile Include="..\src\engine\mdlbin.cpp" />
+    <ClCompile Include="..\src\engine\menu.cpp" />
+    <ClCompile Include="..\src\engine\modeler.cpp" />
+    <ClCompile Include="..\src\engine\namespace.cpp" />
+    <ClCompile Include="..\src\engine\palette.cpp" />
+    <ClCompile Include="..\src\engine\pane.cpp" />
+    <ClCompile Include="..\src\engine\paneimage.cpp" />
+    <ClCompile Include="..\src\engine\pch.cpp" />
+    <ClCompile Include="..\src\engine\pixelformat.cpp" />
+    <ClCompile Include="..\src\engine\popup.cpp" />
+    <ClCompile Include="..\src\engine\raster.cpp" />
+    <ClCompile Include="..\src\engine\softraster.cpp" />
+    <ClCompile Include="..\src\engine\stdafx.cpp" />
+    <ClCompile Include="..\src\engine\surface.cpp" />
+    <ClCompile Include="..\src\engine\toppane.cpp" />
+    <ClCompile Include="..\src\engine\transform.cpp" />
+    <ClCompile Include="..\src\engine\transform2.cpp" />
+    <ClCompile Include="..\src\engine\value.cpp" />
+    <ClCompile Include="..\src\engine\videoimage.cpp" />
+    <ClCompile Include="..\src\engine\viewport.cpp" />
+    <ClCompile Include="..\src\engine\xfile.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\engine\bounds.h" />
+    <ClInclude Include="..\src\engine\bspgeo.h" />
+    <ClInclude Include="..\src\engine\button.h" />
+    <ClInclude Include="..\src\engine\camera.h" />
+    <ClInclude Include="..\src\engine\caption.h" />
+    <ClInclude Include="..\src\engine\CD3DDevice9.h" />
+    <ClInclude Include="..\src\engine\context.h" />
+    <ClInclude Include="..\src\engine\controls.h" />
+    <ClInclude Include="..\src\engine\CVBIBManager.h" />
+    <ClInclude Include="..\src\engine\CVRAMManager.h" />
+    <ClInclude Include="..\src\engine\ddstruct.h" />
+    <ClInclude Include="..\src\engine\DX7Defs.h" />
+    <ClInclude Include="..\src\engine\DX9PackFile.h" />
+    <ClInclude Include="..\src\engine\engine.h" />
+    <ClInclude Include="..\src\engine\engineapp.h" />
+    <ClInclude Include="..\src\engine\enginep.h" />
+    <ClInclude Include="..\src\engine\enginewindow.h" />
+    <ClInclude Include="..\src\engine\fliphelp.h" />
+    <ClInclude Include="..\src\engine\font.h" />
+    <ClInclude Include="..\src\engine\frameimage.h" />
+    <ClInclude Include="..\src\engine\FreeImage\FreeImage.h" />
+    <ClInclude Include="..\src\engine\geometry.h" />
+    <ClInclude Include="..\src\engine\HashTable.h" />
+    <ClInclude Include="..\src\engine\image.h" />
+    <ClInclude Include="..\src\engine\inputengine.h" />
+    <ClInclude Include="..\src\engine\keyframe.h" />
+    <ClInclude Include="..\src\engine\material.h" />
+    <ClInclude Include="..\src\engine\mdl.h" />
+    <ClInclude Include="..\src\engine\menu.h" />
+    <ClInclude Include="..\src\engine\model.h" />
+    <ClInclude Include="..\src\engine\namespace.h" />
+    <ClInclude Include="..\src\engine\palette.h" />
+    <ClInclude Include="..\src\engine\pane.h" />
+    <ClInclude Include="..\src\engine\paneimage.h" />
+    <ClInclude Include="..\src\engine\pch.h" />
+    <ClInclude Include="..\src\engine\pixel.h" />
+    <ClInclude Include="..\src\engine\pixelformat.h" />
+    <ClInclude Include="..\src\engine\popup.h" />
+    <ClInclude Include="..\src\engine\stdafx.h" />
+    <ClInclude Include="..\src\engine\surface.h" />
+    <ClInclude Include="..\src\engine\toppane.h" />
+    <ClInclude Include="..\src\engine\transform.h" />
+    <ClInclude Include="..\src\engine\value.h" />
+    <ClInclude Include="..\src\engine\VideoSettingsDX9.h" />
+    <ClInclude Include="..\src\engine\viewport.h" />
+    <ClInclude Include="..\src\engine\xfile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\engine\makefile" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D619B179-7FC4-4DB6-9794-1D3C75717D15}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='FZRetail|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='FZDebug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='AZRetail|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='FZRetail|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='FZDebug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='AZRetail|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">
+    <OutDir>..\objs12\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>..\objs12\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='AZRetail|Win32'">
+    <OutDir>..\objs12\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>..\objs12\$(Configuration)\$(ProjectName)\</IntDir>
+    <LibraryPath>.\FreeImage;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\..\..\objs\Debug\Engine\</OutDir>
+    <IntDir>.\..\..\objs\Debug\Engine\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='FZDebug|Win32'">
+    <OutDir>..\objs10\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>..\objs10\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='FZRetail|Win32'">
+    <OutDir>..\objs10\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>..\objs10\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">
+    <ClCompile>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>..\Inc;..\_Utility;..\WinTrek;..\ZLib;..\Guids;..\Zone;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_AFXDLL;WIN32;_WINDOWS;STRICT;DIRECTINPUT_VERSION=0x0700;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling />
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader />
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <BrowseInformation />
+      <BrowseInformationFile />
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='AZRetail|Win32'">
+    <ClCompile>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>..\Inc;..\_Utility;..\WinTrek;..\ZLib;..\Guids;..\Zone;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_AFXDLL;WIN32;_WINDOWS;STRICT;DIRECTINPUT_VERSION=0x0700;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <BrowseInformation>
+      </BrowseInformation>
+      <BrowseInformationFile>
+      </BrowseInformationFile>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\Inc;..\_Utility;..\WinTrek;..\ZLib;..\Guids;..\Zone;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_AFXDLL;WIN32;_WINDOWS;STRICT;DIRECTINPUT_VERSION=0x0700;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling />
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader />
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <BrowseInformation />
+      <BrowseInformationFile />
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='FZDebug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\Inc;..\_Utility;..\WinTrek;..\ZLib;..\Guids;..\Zone;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_AFXDLL;WIN32;_WINDOWS;STRICT;DIRECTINPUT_VERSION=0x0700;_DEBUG;DEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling />
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader />
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <BrowseInformation />
+      <BrowseInformationFile />
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='FZRetail|Win32'">
+    <ClCompile>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>..\Inc;..\_Utility;..\WinTrek;..\ZLib;..\Guids;..\Zone;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_AFXDLL;WIN32;_WINDOWS;STRICT;DIRECTINPUT_VERSION=0x0700;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling />
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader />
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <BrowseInformation />
+      <BrowseInformationFile />
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -131,11 +131,11 @@ CD3DDeviceModeData::CD3DDeviceModeData( int iMinWidth, int iMinHeight, class CLo
 		return;
 	}
 
-	HMODULE hRast = LoadLibrary("rgb9rast.dll");
+	HMODULE hRast = LoadLibraryA("rgb9rast.dll");
 	if (hRast == 0) {
-		hRast = LoadLibrary("rgb9rast_1.dll");
+		hRast = LoadLibraryA("rgb9rast_1.dll");
 		if (hRast == 0) {
-			hRast = LoadLibrary("rgb9rast_2.dll");
+			hRast = LoadLibraryA("rgb9rast_2.dll");
 		}
 	}
 	if(hRast != 0) {
@@ -995,7 +995,7 @@ bool CD3DDeviceModeData::GetModeParams(	CD3DDevice9::SD3DDeviceSetupParams * pPa
 	else
 	{
 		pLogFile->OutputString("WARNING: failed to find a good windowed match. Disabling windowed mode.\n" );
-		OutputDebugString("WARNING: failed to find a good windowed match. Disabling windowed mode.\n" );
+		OutputDebugStringA("WARNING: failed to find a good windowed match. Disabling windowed mode.\n" );
 		pParams->bWindowModeValid = false;
 		pParams->bRunWindowed = false;
 	}

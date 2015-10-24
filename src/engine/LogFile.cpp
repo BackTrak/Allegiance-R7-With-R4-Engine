@@ -11,7 +11,7 @@ CLogFile::CLogFile( char * szFileName )
 	m_hLogFile = INVALID_HANDLE_VALUE;
 
 	strcpy_s( m_szFileName, MAX_PATH, szFileName );
-	GetModuleFileName( NULL, m_szFilePath, MAX_PATH);
+	GetModuleFileNameA( NULL, m_szFilePath, MAX_PATH);
 
 	char * p = strrchr(m_szFilePath, '\\');
 	if (!p)
@@ -21,7 +21,7 @@ CLogFile::CLogFile( char * szFileName )
 
 	strcpy_s( p, MAX_PATH - ( strlen( m_szFilePath ) - strlen( p ) ), szFileName );
 
-	m_hLogFile = CreateFile(	m_szFilePath, 
+	m_hLogFile = CreateFileA(	m_szFilePath, 
 								GENERIC_WRITE, 
 								0,
 								NULL, 
