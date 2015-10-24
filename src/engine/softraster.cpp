@@ -2592,8 +2592,8 @@ public:
 
             m_pixels -= area;
 
-            swap(pvbDraw, pvcDraw);
-            swap(iyb, iyc);
+            Swap(pvbDraw, pvcDraw);
+            Swap(iyb, iyc);
         }
 
         //

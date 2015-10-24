@@ -35,8 +35,9 @@ public:
     {
         m_pwrapImage = new WrapImage(Image::GetEmpty()); //Fix memory leak -Imago 8/2/09
 
+		// BT DX7 - Turning off background color key for Dx7 compatibility (Otherwise it shows a green border or background)
 		// Need a background with colour key.
-        m_ppane = new ImagePane(pmodeler->LoadImage("dialogbkgndbmp", true ));
+        m_ppane = new ImagePane(pmodeler->LoadImage("dialogbkgndbmp", false ));
 
         TRef<Image> pstringImage =
             CreateStringImage(

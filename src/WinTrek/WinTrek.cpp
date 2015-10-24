@@ -2566,7 +2566,9 @@ public:
         bool           bSecondary
     ) :
 // BUILD_DX9
-        TrekWindow(
+
+       // BT DX7 - Moving back to the old window init for now.
+       /* TrekWindow(
             papp,
             strCommandLine,
             true,
@@ -2577,9 +2579,9 @@ public:
 					CD3DDevice9::Get()->GetCurrentMode()->mode.Height +
 									CD3DDevice9::Get()->GetDeviceSetupParams()->iWindowOffsetY),
               WinPoint(800, 600)
-        ),
+        ),*/
 
-/*
+
         TrekWindow(
             papp,
             strCommandLine,
@@ -2587,7 +2589,7 @@ public:
             WinRect(0, 0, 800, 600),
             WinPoint(640, 480)
         ),
-*/
+
 // BUILD_DX9
         m_screen(ScreenIDSplashScreen),
         m_bShowMeteors(true),

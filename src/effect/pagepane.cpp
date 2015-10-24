@@ -343,6 +343,7 @@ public:
             return false;
         }
 
+		// BT DX7 - Turning on color key for DX7 to match R4 code.
         TRef<Image> pimage = m_pmodeler->LoadImage(strImage + "bmp", true, false);
         if (pimage == NULL) {
             return Error("Invalid image");
@@ -560,6 +561,7 @@ public:
                 return false;
             }
 
+			// BT DX7 - Turning on color key for DX7 to match R4 code.
             TRef<Image> pimage = m_pmodeler->LoadImage(str + "bmp", true, false);
             if (pimage) {
                 InsertAtBottom(new ImagePane(pimage));

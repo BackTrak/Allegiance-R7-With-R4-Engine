@@ -87,7 +87,8 @@ public:
         // The footer
         //
 
-        TRef<Pane> ppaneFooter = new ImagePane(pmodeler->LoadImage("gamestatefooterbmp", true));
+		// BT DX7 - Turning off background color key for Dx7 compatibility (Otherwise it shows a green border or background)
+        TRef<Pane> ppaneFooter = new ImagePane(pmodeler->LoadImage("gamestatefooterbmp", false));
 
         m_pstringPaneTime = new StringPane(ZString("2:00"), pfontTime);
         m_pstringPaneTime->SetOffset(WinPoint(50, 3));
@@ -100,7 +101,8 @@ public:
 
         TRef<ColumnPane> pcol = new ColumnPane();
 		
-        pcol->InsertAtBottom(new ImagePane(pmodeler->LoadImage("gamestateheaderbmp", true)));
+		// BT DX7 - Turning off background color key for Dx7 compatibility (Otherwise it shows a green border or background)
+        pcol->InsertAtBottom(new ImagePane(pmodeler->LoadImage("gamestateheaderbmp", false)));
 		pcol->InsertAtBottom(new FillPane(WinPoint(0, 1), s_colorLight));
         pcol->InsertAtBottom(ppaneInfo);
         pcol->InsertAtBottom(ppaneFooter);
@@ -130,13 +132,14 @@ public:
     ) {
         TRef<StringPane> pstringPane = new StringPane(ZString(), m_pfontTitles);
 
+		// BT DX7 - Turning off background color key for Dx7 compatibility (Otherwise it shows a green border or background)
         m_pcolTiles->InsertAtBottom(
             new BorderPane(
                 0, 
                 1,
                 s_colorBackground,
                 new ColumnPane(
-                    new ImagePane(m_pmodeler->LoadImage(strTitle, true)),
+                    new ImagePane(m_pmodeler->LoadImage(strTitle, false)),
 					new BorderPane(
 						3,
 						1,

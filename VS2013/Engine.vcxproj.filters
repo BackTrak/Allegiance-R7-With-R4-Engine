@@ -48,17 +48,11 @@
     <ClCompile Include="..\src\engine\controls.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\engine\D3DDevice9.cpp">
-      <Filter>New Code</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\engine\dderror.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\src\engine\device3d.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\engine\DeviceModesDX9.cpp">
-      <Filter>New Code\Settings</Filter>
     </ClCompile>
     <ClCompile Include="..\src\engine\dinput.cpp">
       <Filter>GUI\Input</Filter>
@@ -84,14 +78,8 @@
     <ClCompile Include="..\src\engine\image.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\engine\ImageTransfer.cpp">
-      <Filter>New Code</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\engine\keyframe.cpp">
       <Filter>Modeler\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\engine\LogFile.cpp">
-      <Filter>New Code\Settings</Filter>
     </ClCompile>
     <ClCompile Include="..\src\engine\material.cpp">
       <Filter>Modeler\Resource</Filter>
@@ -124,9 +112,6 @@
     <ClCompile Include="..\src\engine\popup.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\engine\RasterD3D9.cpp">
-      <Filter>New Code</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\engine\surface.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -142,24 +127,24 @@
     <ClCompile Include="..\src\engine\value.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\engine\VBIBManager.cpp">
-      <Filter>New Code</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\engine\VertexGenerator.cpp">
-      <Filter>New Code</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\engine\VideoSettingsDX9.cpp">
-      <Filter>New Code\Settings</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\engine\viewport.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\engine\VRAMManager.cpp">
-      <Filter>New Code</Filter>
     </ClCompile>
     <ClCompile Include="..\src\engine\xfile.cpp">
       <Filter>Modeler\Resource</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\engine\CD3DDevice9.cpp" />
+    <ClCompile Include="..\src\engine\CVBIBManager.cpp" />
+    <ClCompile Include="..\src\engine\CVRAMManager.cpp" />
+    <ClCompile Include="..\src\engine\d3ddevice.cpp" />
+    <ClCompile Include="..\src\engine\dddevice.cpp" />
+    <ClCompile Include="..\src\engine\ddsurface.cpp" />
+    <ClCompile Include="..\src\engine\fliphelp.cpp" />
+    <ClCompile Include="..\src\engine\palette.cpp" />
+    <ClCompile Include="..\src\engine\raster.cpp" />
+    <ClCompile Include="..\src\engine\softraster.cpp" />
+    <ClCompile Include="..\src\engine\stdafx.cpp" />
+    <ClCompile Include="..\src\engine\videoimage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\engine\bounds.h">
@@ -183,14 +168,8 @@
     <ClInclude Include="..\src\engine\controls.h">
       <Filter>GUI</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\engine\D3DDevice9.h">
-      <Filter>New Code</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\engine\ddstruct.h">
       <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\engine\DeviceModesDX9.h">
-      <Filter>New Code\Settings</Filter>
     </ClInclude>
     <ClInclude Include="..\src\engine\DX9PackFile.h">
       <Filter>New Code\Texture Pack</Filter>
@@ -198,9 +177,6 @@
     <ClInclude Include="..\src\engine\engine.h" />
     <ClInclude Include="..\src\engine\engineapp.h" />
     <ClInclude Include="..\src\engine\enginep.h" />
-    <ClInclude Include="..\src\engine\EngineSettings.h">
-      <Filter>New Code</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\engine\enginewindow.h" />
     <ClInclude Include="..\src\engine\font.h">
       <Filter>GUI</Filter>
@@ -217,17 +193,11 @@
     <ClInclude Include="..\src\engine\image.h">
       <Filter>GUI</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\engine\ImageTransfer.h">
-      <Filter>New Code</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\engine\inputengine.h">
       <Filter>GUI\Input</Filter>
     </ClInclude>
     <ClInclude Include="..\src\engine\keyframe.h">
       <Filter>Modeler\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\engine\LogFile.h">
-      <Filter>New Code\Settings</Filter>
     </ClInclude>
     <ClInclude Include="..\src\engine\material.h">
       <Filter>Modeler\Resource</Filter>
@@ -266,17 +236,8 @@
     <ClInclude Include="..\src\engine\transform.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\engine\UIVertexDefn.h">
-      <Filter>New Code</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\engine\value.h">
       <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\engine\VBIBManager.h">
-      <Filter>New Code</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\engine\VertexGenerator.h">
-      <Filter>New Code</Filter>
     </ClInclude>
     <ClInclude Include="..\src\engine\VideoSettingsDX9.h">
       <Filter>New Code\Settings</Filter>
@@ -284,11 +245,20 @@
     <ClInclude Include="..\src\engine\viewport.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\engine\VRAMManager.h">
-      <Filter>New Code</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\engine\xfile.h">
       <Filter>Modeler\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\engine\CD3DDevice9.h" />
+    <ClInclude Include="..\src\engine\CVBIBManager.h" />
+    <ClInclude Include="..\src\engine\CVRAMManager.h" />
+    <ClInclude Include="..\src\engine\DX7Defs.h" />
+    <ClInclude Include="..\src\engine\fliphelp.h" />
+    <ClInclude Include="..\src\engine\FreeImage\FreeImage.h" />
+    <ClInclude Include="..\src\engine\palette.h" />
+    <ClInclude Include="..\src\engine\pixel.h" />
+    <ClInclude Include="..\src\engine\stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\engine\makefile" />
   </ItemGroup>
 </Project>

@@ -516,12 +516,16 @@ private:
             // if they are on our team, draw the player's wing
             if (pplayer->SideID() == trekClient.GetSideID() && !bOnLobbySide)
             {
-                psurface->DrawString(
-                    TrekResources::SmallFont(),
-                    color,
-                    WinPoint(m_viColumns[4] + 2, 0), 
-                    c_pszWingName[pplayer->GetShip()->GetWingID()]
-                );
+				// BT DX7 - Alleg client crash when rejoining a team when a team member doesn't have a wing set.
+				if (pplayer->GetShip()->GetWingID() >= 0)
+				{
+					psurface->DrawString(
+						TrekResources::SmallFont(),
+						color,
+						WinPoint(m_viColumns[4] + 2, 0),
+						c_pszWingName[pplayer->GetShip()->GetWingID()]
+						);
+				}
             }
         }
     };

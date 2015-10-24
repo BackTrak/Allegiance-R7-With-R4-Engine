@@ -649,7 +649,10 @@ public:
 
 HRESULT EffectApp::Initialize(const ZString& strCommandLine, HWND hWindow )
 {
-    if( SUCCEEDED( EngineApp::Initialize( strCommandLine, hWindow ) ) ) 
+	// BT DX7 - DX7 engine doesn't take a window handle.
+	//if( SUCCEEDED( EngineApp::Initialize( strCommandLine, hWindow ) ) ) 
+
+	if (SUCCEEDED(EngineApp::Initialize(strCommandLine)))
 	{
         TRef<INameSpace> pnsModel = GetModeler()->GetNameSpace("model");
         TRef<Number>     pnumberTime; CastTo(pnumberTime,  pnsModel->FindMember("time"));

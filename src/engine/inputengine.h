@@ -32,6 +32,7 @@ public:
     virtual int      GetButtonCount() = 0;
     virtual Boolean* IsDown(int id)   = 0;
     virtual Number*  GetValue(int id) = 0;
+
     virtual ButtonEvent::Source* GetEventSource() = 0;
 };
 
@@ -45,15 +46,14 @@ class MouseInputStream : public InputStream {
 public:
     virtual void SetClipRect(const Rect& rect)       = 0;
     virtual void SetPosition(const Point& point)     = 0;
-    virtual float GetWheelPosition()                 = 0; //Imago 8/12/09
-	//Imago #215 8/10
-	virtual void SetSensitivity(const float sens)	 = 0;
-	virtual void SetAccel(const int accel)			 = 0;
-	//
     virtual void SetWheelPosition(float pos)         = 0;
     virtual void SetEnabled(bool bEnabled)           = 0;
 
     virtual const Point& GetPosition()               = 0;
+
+	// BT DX7 Compatibility
+	void SetAccel(int value) {}
+	void SetSensitivity(float value) {}
 };
 
 //////////////////////////////////////////////////////////////////////////////
@@ -64,13 +64,15 @@ public:
 
 class JoystickInputStream : public InputStream {
 public:
-	virtual void	SetRanges()									  = 0; //Imago 7/10 #187
     virtual bool    HasForceFeedback()                            = 0;
     virtual void    CreateEffects()                               = 0;
     virtual void    PlayFFEffect(short effectID, LONG lDirection) = 0;
     virtual ZString GetShortDescription(int index)                = 0;
     virtual ZString GetDescription()                              = 0;
     virtual ZString GetValueDescription(int id)                   = 0;
+
+	// BT DX7 Compatibility
+	void SetRanges() {}
 };
 
 //////////////////////////////////////////////////////////////////////////////
@@ -87,7 +89,6 @@ public:
     virtual int                  GetJoystickCount()     = 0;
     virtual JoystickInputStream* GetJoystick(int index) = 0;
     virtual MouseInputStream*    GetMouse()             = 0;
-
 };
 
 TRef<InputEngine> CreateInputEngine(HWND hwnd);

@@ -217,7 +217,7 @@ bool CDX9PackFile::Create( PACK_CREATE_CALLBACK pFnCreateCallback )
 		delete m_pHashTable;
 		m_pHashTable = NULL;
 		m_bFinished = true;
-		DeleteFile( &m_szOutputFileName[0] );
+		DeleteFileA( &m_szOutputFileName[0] );
 		return false;
 	}
 	AddFiles( "Textures", "*.png" );
@@ -228,7 +228,7 @@ bool CDX9PackFile::Create( PACK_CREATE_CALLBACK pFnCreateCallback )
 		delete m_pHashTable;
 		m_pHashTable = NULL;
 		m_bFinished = true;
-		DeleteFile( &m_szOutputFileName[0] );
+		DeleteFileA( &m_szOutputFileName[0] );
 		return false;
 	}
 	AddFiles( "", "*bmp.mdl" );
@@ -239,7 +239,7 @@ bool CDX9PackFile::Create( PACK_CREATE_CALLBACK pFnCreateCallback )
 		delete m_pHashTable;
 		m_pHashTable = NULL;
 		m_bFinished = true;
-		DeleteFile( &m_szOutputFileName[0] );
+		DeleteFileA( &m_szOutputFileName[0] );
 		return false;
 	}
 	AddFiles( "", "*.png" );
@@ -250,7 +250,7 @@ bool CDX9PackFile::Create( PACK_CREATE_CALLBACK pFnCreateCallback )
 		delete m_pHashTable;
 		m_pHashTable = NULL;
 		m_bFinished = true;
-		DeleteFile( &m_szOutputFileName[0] );
+		DeleteFileA( &m_szOutputFileName[0] );
 		return false;
 	}
 
@@ -296,16 +296,16 @@ bool CDX9PackFile::AddFiles( ZString szDir, ZString szFilter )
 {
 	DWORD dwRet;
 	BOOL bFoundFile = TRUE, bAddFile;
-	TCHAR szOriginalDir[ MAX_PATH ];//, szSearchDir[ MAX_PATH ];
+	CHAR szOriginalDir[ MAX_PATH ];//, szSearchDir[ MAX_PATH ];
 	ZString szSearchDir, szFile;
 	HANDLE hCurrentFile;
-	WIN32_FIND_DATA findData;
+	WIN32_FIND_DATAA findData;
 	DWORD dwAmountWritten, dwAmountRead, dwHash;
 	CPackFileHashEntry * pTableEntry;
 	CHashTable tempTable;
 	bool bRetVal = true;
 
-	dwRet = GetCurrentDirectory( MAX_PATH, szOriginalDir );
+	dwRet = GetCurrentDirectoryA( MAX_PATH, szOriginalDir );
 	_ASSERT( ( dwRet > 0 ) && ( dwRet < MAX_PATH ) );
 
 	szSearchDir = m_szDataPath;
@@ -314,9 +314,9 @@ bool CDX9PackFile::AddFiles( ZString szDir, ZString szFilter )
 		szSearchDir += "/" + szDir;
 	}
 
-	SetCurrentDirectory( szSearchDir );
+	SetCurrentDirectoryA( szSearchDir );
 
-	hCurrentFile = FindFirstFile( szFilter, &findData );
+	hCurrentFile = FindFirstFileA( szFilter, &findData );
 	if( hCurrentFile == INVALID_HANDLE_VALUE )
 	{
 		bFoundFile = FALSE;
@@ -417,12 +417,12 @@ bool CDX9PackFile::AddFiles( ZString szDir, ZString szFilter )
 			}
 		}
 
-		bFoundFile = FindNextFile( hCurrentFile, &findData );
+		bFoundFile = FindNextFileA( hCurrentFile, &findData );
 	}
 	FindClose( hCurrentFile );
 	
 	// Restore the original directory.
-	SetCurrentDirectory( szOriginalDir );
+	SetCurrentDirectoryA( szOriginalDir );
 	return true;
 }
 
@@ -468,14 +468,14 @@ int CDX9PackFile::GetFileCount( ZString szDir, ZString szFilter )
 {
 	DWORD dwRet;
 	BOOL bFoundFile = TRUE, bAddFile;
-	TCHAR szOriginalDir[ MAX_PATH ];//, szSearchDir[ MAX_PATH ];
+	CHAR szOriginalDir[ MAX_PATH ];//, szSearchDir[ MAX_PATH ];
 	ZString szSearchDir, szFile;
 	HANDLE hCurrentFile;
-	WIN32_FIND_DATA findData;
+	WIN32_FIND_DATAA findData;
 	DWORD dwHash;
 	CPackFileHashEntry * pTableEntry;
 
-	dwRet = GetCurrentDirectory( MAX_PATH, szOriginalDir );
+	dwRet = GetCurrentDirectoryA( MAX_PATH, szOriginalDir );
 	_ASSERT( ( dwRet > 0 ) && ( dwRet < MAX_PATH ) );
 
 	szSearchDir = m_szDataPath;
@@ -484,10 +484,10 @@ int CDX9PackFile::GetFileCount( ZString szDir, ZString szFilter )
 		szSearchDir += "/" + szDir;
 	}
 
-	SetCurrentDirectory( szSearchDir );
+	SetCurrentDirectoryA( szSearchDir );
 
 	int iMaxFiles = 0;
-	hCurrentFile = FindFirstFile( szFilter, &findData );
+	hCurrentFile = FindFirstFileA( szFilter, &findData );
 	if( hCurrentFile == INVALID_HANDLE_VALUE )
 	{
 		bFoundFile = FALSE;
@@ -537,12 +537,12 @@ int CDX9PackFile::GetFileCount( ZString szDir, ZString szFilter )
 				}
 			}
 		}
-		bFoundFile = FindNextFile( hCurrentFile, &findData );
+		bFoundFile = FindNextFileA( hCurrentFile, &findData );
 	}
 	FindClose( hCurrentFile );
 
 	// Restore the original directory.
-	SetCurrentDirectory( szOriginalDir );
+	SetCurrentDirectoryA( szOriginalDir );
 
 	return iMaxFiles;
 }
@@ -651,7 +651,7 @@ bool CDX9PackFile::ImportPackFile( )
         m_pFile->Release();
         delete m_pFile;
         m_pFile = NULL;
-        DeleteFile((PCC)m_szOutputFileName);
+        DeleteFileA((PCC)m_szOutputFileName);
         g_DX9Settings.mbUseTexturePackFiles = false;
 		memset( &m_header, 0, sizeof( SHashTableEntry ) );
 		delete[] m_pPackFile;

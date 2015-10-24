@@ -567,7 +567,9 @@ public:
             {
                 m_pbuttonDonate->SetRepeat(0.1f, 0.5f);
                 AddEventTarget(&TeamPane::OnButtonDonate, m_pbuttonDonate->GetEventSource());
-				AddEventTarget(&TeamPane::OnRightButtonDonate, m_pbuttonDonate->GetRightEventSource());
+				
+				// BT DX7 - Removing for now.
+				//AddEventTarget(&TeamPane::OnRightButtonDonate, m_pbuttonDonate->GetRightEventSource());
             }
             
             if (m_pbuttonAutoDonate)
@@ -1806,7 +1808,9 @@ class ExpandedTeamPane : public TeamPane
             // draw the player's Wing
             if (pplayer->SideID() == trekClient.GetSideID())
             {
-                psurface->DrawString(pfont, color, WinPoint(m_viColumns[4] + 2, 1), c_pszWingName[pship->GetWingID()]);
+				// BT DX7 - Drones in single sided missions don't always have wing IDs?
+				if (pship->GetWingID() >= 0)
+					psurface->DrawString(pfont, color, WinPoint(m_viColumns[4] + 2, 1), c_pszWingName[pship->GetWingID()]);
             }
 
 			// draw the rank: AEM 7.21.07

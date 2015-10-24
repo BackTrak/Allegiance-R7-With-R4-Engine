@@ -44,8 +44,11 @@
 //
 
 // KGJV - Removed dependancy from DX
-#include "OldDXDefns.h"	// Older DX definitions included to get the project to build. At some point,
+// #include "OldDXDefns.h"	// Older DX definitions included to get the project to build. At some point,
 						// they all become redundant.
+
+// BT DX7 - Shims for compatibility with the DX7 version of the engine.
+#include "DX7Defs.h"
 
 //
 // Library Headers
